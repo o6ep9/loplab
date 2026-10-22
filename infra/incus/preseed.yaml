@@ -1,0 +1,19 @@
+# Incus server initialization.
+# Apply once on a fresh host: incus admin init --preseed < infra/incus/preseed.yaml
+# Network and guest profile are defined separately (network.yaml, profile-lab.yaml).
+config: {}
+networks: []
+storage_pools:
+  - name: default
+    driver: btrfs
+    description: Guest root filesystems
+    config:
+      source: /var/lib/incus/storage-pools/default
+profiles:
+  - name: default
+    description: Default profile
+    devices:
+      root:
+        type: disk
+        path: /
+        pool: default

@@ -38,7 +38,7 @@ host (CachyOS, Incus)
 | Layer | Tool |
 |---|---|
 | Host | ThinkPad T14s Gen 3, Ryzen 7 PRO 6850U (8C/16T), 13 GiB RAM, CachyOS |
-| Virtualization | Incus: Debian 12 system containers, VMs where a separate kernel is required |
+| Virtualization | Incus: Debian 13 system containers, VMs where a separate kernel is required |
 | Configuration | Ansible |
 | Monitoring | Prometheus, node_exporter, Alertmanager, Grafana |
 
