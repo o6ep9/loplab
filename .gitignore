@@ -1,0 +1,24 @@
+# Secrets
+.vault_pass*
+*.env
+.env
+
+# Ansible
+*.retry
+ansible/.ansible/
+ansible/fact_cache/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# Local tool and editor settings
+.claude/
+.vscode/
+.idea/
+
+# Editor artifacts
+*.swp
+*~
