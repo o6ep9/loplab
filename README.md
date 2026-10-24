@@ -4,7 +4,7 @@ Home DevOps lab running on a single laptop: Debian guests in Incus,
 configured with Ansible, monitored with Prometheus and Grafana, alerting
 to Telegram, with load balancing and failover.
 
-Each stage has a goal, acceptance criteria and a failure drill.
+Each stage has a goal, acceptance criteria and a failure injection.
 See [docs/roadmap.md](docs/roadmap.md).
 
 ## Status
@@ -48,7 +48,7 @@ host (CachyOS, Incus)
 infra/incus/   network, profile, guest provisioning
 ansible/       inventory, roles, playbooks
 monitoring/    alert rules, Grafana dashboards
-scripts/       checks and failure drills
+scripts/       checks and failure injections
 docs/          roadmap, runbooks, screenshots
 ```
 
