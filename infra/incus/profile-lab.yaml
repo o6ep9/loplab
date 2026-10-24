@@ -1,0 +1,30 @@
+# Guest profile: resources, network, first-boot provisioning.
+# __SSH_PUBKEY__ is replaced with the host public key when the profile is applied.
+# Requires a cloud image variant, e.g. images:debian/13/cloud.
+description: Lab guest
+config:
+  boot.autostart: "false"
+  limits.cpu: "2"
+  limits.memory: 512MiB
+  cloud-init.user-data: |
+    #cloud-config
+    users:
+      - name: ops
+        groups: [sudo]
+        shell: /bin/bash
+        sudo: "ALL=(ALL) NOPASSWD:ALL"
+        ssh_authorized_keys:
+          - __SSH_PUBKEY__
+    package_update: true
+    packages:
+      - openssh-server
+      - python3
+devices:
+  root:
+    type: disk
+    path: /
+    pool: default
+  eth0:
+    type: nic
+    name: eth0
+    network: lab-br0

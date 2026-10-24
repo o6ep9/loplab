@@ -11,6 +11,7 @@ One-time changes on the host (CachyOS). Each change is lab-specific and reversib
 | `incus.socket` enabled | Start the Incus daemon on first client request | `sudo systemctl disable --now incus.socket` |
 | User in group `incus-admin` | Manage Incus without sudo (root-equivalent access) | `sudo gpasswd -d $USER incus-admin` |
 | Storage pool `default` (btrfs subvolume under `/var/lib/incus`) | Guest root filesystems | `incus storage delete default` (after deleting all guests) |
+| ufw: allow input and routing on `lab-br0` | DHCP/DNS from guests to the host, forwarded traffic to the internet | `sudo ufw delete allow in on lab-br0`, same for both `route` rules |
 
 ## Steps
 
@@ -21,7 +22,16 @@ sudo systemctl enable --now incus.socket
 sudo usermod -aG incus-admin $USER
 newgrp incus-admin                     # or log out and back in
 incus admin init --preseed < infra/incus/preseed.yaml
+sudo ufw allow in on lab-br0
+sudo ufw route allow in on lab-br0
+sudo ufw route allow out on lab-br0
 ```
+
+The ufw rules must be in place before the first guest boots. Otherwise the guest
+gets no DHCP lease, cloud-init fails to install packages (`Temporary failure
+resolving 'deb.debian.org'` in `/var/log/cloud-init-output.log`) and SSH is
+missing. cloud-init runs once per instance, so recreate the guest after fixing
+the firewall.
 
 ## Verification
 
