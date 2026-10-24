@@ -1,0 +1,10 @@
+# Lab bridge network.
+# Apply: incus network create lab-br0 < infra/incus/network.yaml
+# Static guest addresses (.10-.99) are assigned per instance; DHCP range is for ad-hoc guests.
+description: Lab network
+config:
+  ipv4.address: 10.10.10.1/24
+  ipv4.nat: "true"
+  ipv4.dhcp.ranges: 10.10.10.100-10.10.10.199
+  ipv6.address: none
+  dns.domain: internal

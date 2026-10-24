@@ -56,7 +56,23 @@ Directories are added as content appears.
 
 ## Usage
 
-TBD.
+Host prerequisites: [docs/host-setup.md](docs/host-setup.md).
+
+Network and guest profile:
+
+```sh
+incus network create lab-br0 < infra/incus/network.yaml
+incus profile create lab
+sed "s|__SSH_PUBKEY__|$(cat ~/.ssh/loplab.pub)|" infra/incus/profile-lab.yaml | incus profile edit lab
+```
+
+Test guest:
+
+```sh
+incus launch images:debian/13/cloud nettest --profile lab
+incus exec nettest -- cloud-init status --wait
+ssh -i ~/.ssh/loplab ops@<address from incus list>
+```
 
 ## Verification
 
