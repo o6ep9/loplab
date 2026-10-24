@@ -1,7 +1,7 @@
 # Roadmap
 
 Each stage is tracked as a GitHub issue with the same structure:
-problem, goal, acceptance criteria, failure drill.
+problem, goal, acceptance criteria, failure injection.
 
 ## Stage 0. Foundation
 
@@ -11,7 +11,7 @@ problem, goal, acceptance criteria, failure drill.
   - every guest is reachable via `ssh <name>` without a password;
   - guests reach each other and the internet;
   - guests are created and destroyed with one command.
-- **Failure drill:** delete a guest and recreate it with the same command.
+- **Failure injection:** delete a guest and recreate it with the same command.
 
 ## Stage 1. Configuration management
 
@@ -20,7 +20,7 @@ problem, goal, acceptance criteria, failure drill.
 - **Acceptance criteria:**
   - a fresh guest reaches the target state with a single `ansible-playbook` run;
   - a second run reports `changed=0` (idempotency).
-- **Failure drill:** break nginx config and remove a package manually; destroy a guest entirely; restore both with the playbook.
+- **Failure injection:** break nginx config and remove a package manually; destroy a guest entirely; restore both with the playbook.
 
 ## Stage 2. Monitoring and alerting
 
@@ -30,7 +30,7 @@ problem, goal, acceptance criteria, failure drill.
   - dashboard shows all hosts;
   - alert rules for host down, high CPU, low disk space;
   - Telegram receives both firing and resolved notifications.
-- **Failure drill:** stop a guest, generate CPU load, fill a disk.
+- **Failure injection:** stop a guest, generate CPU load, fill a disk.
 - **Screenshots:** dashboard, Telegram alert.
 
 ## Stage 3. High availability and networking
@@ -40,7 +40,7 @@ problem, goal, acceptance criteria, failure drill.
 - **Acceptance criteria:**
   - service stays available when any one backend or load balancer is down;
   - failover is visible in Grafana.
-- **Failure drill:** stop a backend under load; stop the active load balancer.
+- **Failure injection:** stop a backend under load; stop the active load balancer.
 - **Screenshots:** failover on the Grafana graph.
 
 ## Stage 4. Data

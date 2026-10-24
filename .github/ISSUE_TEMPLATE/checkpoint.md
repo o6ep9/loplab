@@ -1,6 +1,6 @@
 ---
 name: Stage checkpoint
-about: Stage goal, acceptance criteria and failure drill
+about: Stage goal, acceptance criteria and failure injection
 labels: checkpoint
 ---
 
@@ -12,7 +12,7 @@ labels: checkpoint
 
 - [ ]
 
-## Failure drill
+## Failure injection
 
 - [ ]
 
